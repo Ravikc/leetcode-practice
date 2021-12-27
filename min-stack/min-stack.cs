@@ -13,30 +13,14 @@ public class MinStack {
     }
     
     public void Push(int val) {
-        if (_stack.Any())
-        {
-            var node = new Node();
-            node.Value = val;
-            
-            var top = _stack.Peek();
-            if (val < top.NextSmallestNode.Value)
-            {
-                node.NextSmallestNode = node;
-            }
-            else
-            {
-                node.NextSmallestNode = top.NextSmallestNode;
-            }
-            
-            _stack.Push(node);
-        }
-        else
-        {
-            var node = new Node();
-            node.Value = val;
-            node.NextSmallestNode = node;
-            _stack.Push(node);
-        }
+        var node = new Node();
+        node.Value = val;
+        
+        node.NextSmallestNode = (!_stack.Any() || val < _stack.Peek().NextSmallestNode.Value)
+            ? node
+            : _stack.Peek().NextSmallestNode;
+        
+        _stack.Push(node);
     }
     
     public void Pop() {
