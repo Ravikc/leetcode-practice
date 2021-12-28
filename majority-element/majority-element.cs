@@ -9,14 +9,8 @@ public class Solution {
             {
                 candidate = nums[i];
             }
-            if (candidate == nums[i])
-            {
-                count++;
-            }
-            else
-            {
-                count--;
-            }
+            
+            count += candidate == nums[i] ? 1 : -1;            
         }
         
         return candidate;
