@@ -2,12 +2,12 @@ class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         dic = {}
         for char in s:
-            if not char in dic:
+            if char not in dic:
                 dic[char] = 0
             dic[char] += 1
         
         for char in t:
-            if not char in dic:
+            if char not in dic:
                 return False
             dic[char] -= 1
         
