@@ -4,9 +4,10 @@ public class Solution {
     {
         if (root == null && subRoot == null) return true;
         if (root == null || subRoot == null) return false;
-        if (Same(root, subRoot)) return true;
+        // if (Same(root, subRoot)) return true;
         
-       return IsSubtree(root?.left, subRoot)
+       return (Same(root, subRoot))
+           || IsSubtree(root?.left, subRoot)
            || IsSubtree(root?.right, subRoot);
     }
     
