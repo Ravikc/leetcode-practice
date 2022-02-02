@@ -9,8 +9,17 @@ class Solution:
         if root is None:
             return None
         
-        root.left = self.trimBST(root.left, low, high)
-        root.right = self.trimBST(root.right, low, high)
+        if root.val <= low:
+            root.left = None
+        else:
+            root.left = self.trimBST(root.left, low, high)
+        
+        if root.val >= high:
+            root.right = None
+        else:
+            root.right = self.trimBST(root.right, low, high)
+       
+        
         
         if low <= root.val and root.val <= high:
             return root
