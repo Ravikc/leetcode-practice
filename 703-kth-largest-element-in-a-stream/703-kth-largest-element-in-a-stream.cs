@@ -46,18 +46,6 @@ public class MinHeap
             Swap(index, smallerIndex);
             HeapifyTopToBottom(smallerIndex);    
         }
-        
-        
-        // if (_list.Count > leftIndex && _list[index] > _list[leftIndex])
-        // {
-        //     Swap(index, leftIndex);
-        //     HeapifyTopToBottom(leftIndex);
-        // }
-        // else if (_list.Count > rightIndex && _list[index] > _list[rightIndex])
-        // {
-        //     Swap(index, rightIndex);
-        //     HeapifyTopToBottom(rightIndex);
-        // }
     }
     
     public int Add(int num)
