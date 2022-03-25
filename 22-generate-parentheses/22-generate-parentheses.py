@@ -16,8 +16,8 @@ class Solution:
         
     def helper(self, n, braces, ans, remainingOpen, remainingClose):
         if len(braces) == n * 2:
-            if self.isValid(braces):
-                ans.append("".join(braces))
+            # if self.isValid(braces):
+            ans.append("".join(braces))
             
             return
         
