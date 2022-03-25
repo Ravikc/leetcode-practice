@@ -1,7 +1,7 @@
 class Solution:
     def isValid(self, braces):
         # print("checking for", "".join(braces))
-        if len(braces) == 0:
+        if len(braces) == 0 or braces[0] == ")" or braces[-1] == "(":
             return False
         
         stack = []
