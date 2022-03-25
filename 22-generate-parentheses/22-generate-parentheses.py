@@ -14,25 +14,26 @@ class Solution:
         return len(stack) == 0
                     
         
-    def helper(self, n, braces, ans):
+    def helper(self, n, braces, ans, remainingOpen, remainingClose):
         if len(braces) == n * 2:
             if self.isValid(braces):
                 ans.append("".join(braces))
             
             return
         
-        braces.append("(")
-        self.helper(n, braces, ans)
-        braces.pop()
+        if remainingOpen > 0:
+            braces.append("(")
+            self.helper(n, braces, ans, remainingOpen - 1, remainingClose)
+            braces.pop()
         
-        if len(braces) > 0:
+        if len(braces) > 0 and remainingClose > 0:
             braces.append(")")
-            self.helper(n, braces, ans)
+            self.helper(n, braces, ans, remainingOpen, remainingClose - 1)
             braces.pop()
         
         
     def generateParenthesis(self, n: int) -> List[str]:
         braces = []
         ans = []
-        self.helper(n, braces, ans)
+        self.helper(n, braces, ans, n, n)
         return ans
