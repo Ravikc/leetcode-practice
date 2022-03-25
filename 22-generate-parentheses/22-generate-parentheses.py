@@ -1,22 +1,7 @@
 class Solution:
-    def isValid(self, braces):
-        # print("checking for", "".join(braces))
-        if len(braces) == 0 or braces[0] == ")" or braces[-1] == "(":
-            return False
-        
-        stack = []
-        for brace in braces:
-            if len(stack) > 0 and brace == ")" and stack[-1] == "(":
-                stack.pop()
-            else:
-                stack.append(brace)
-                
-        return len(stack) == 0
-                    
         
     def helper(self, n, braces, ans, remainingOpen, remainingClose):
         if len(braces) == n * 2:
-            # if self.isValid(braces):
             ans.append("".join(braces))
             
             return
