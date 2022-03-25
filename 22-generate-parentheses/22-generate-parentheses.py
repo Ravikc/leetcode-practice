@@ -6,15 +6,10 @@ class Solution:
         
         stack = []
         for brace in braces:
-            if len(stack) == 0:
-                stack.append(brace)
+            if len(stack) > 0 and brace == ")" and stack[-1] == "(":
+                stack.pop()
             else:
-                if brace == '(':
-                    stack.append(brace)
-                elif stack[-1] == '(':
-                    stack.pop()
-                else:
-                    stack.append(brace)
+                stack.append(brace)
                 
         return len(stack) == 0
                     
@@ -29,9 +24,11 @@ class Solution:
         braces.append("(")
         self.helper(n, braces, ans)
         braces.pop()
-        braces.append(")")
-        self.helper(n, braces, ans)
-        braces.pop()
+        
+        if len(braces) > 0:
+            braces.append(")")
+            self.helper(n, braces, ans)
+            braces.pop()
         
         
     def generateParenthesis(self, n: int) -> List[str]:
