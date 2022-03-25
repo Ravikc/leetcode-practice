@@ -26,7 +26,9 @@ class Solution:
             self.helper(n, braces, ans, remainingOpen - 1, remainingClose)
             braces.pop()
         
-        if len(braces) > 0 and remainingClose > 0:
+        appliedOpeningBraces = n - remainingOpen
+        appliedClosingBraces = n - remainingClose
+        if len(braces) > 0 and remainingClose > 0 and appliedOpeningBraces > appliedClosingBraces:
             braces.append(")")
             self.helper(n, braces, ans, remainingOpen, remainingClose - 1)
             braces.pop()
