@@ -11,14 +11,11 @@ class Solution:
                 largestEndSoFar = max(largestEndSoFar, intervals[i][1])
                 continue
             
-            largestEndSoFar = intervals[i][1]
             smallest = intervals[left][0]
-            largest = intervals[left][1]
-            for j in range(left, i):
-                largest = max(largest, intervals[j][1])
-            
-            ans.append([smallest, largest])
+            ans.append([smallest, largestEndSoFar])
             left = i
+            largestEndSoFar = intervals[i][1]
+
         
         smallest = intervals[left][0]
         largest = intervals[left][1]
