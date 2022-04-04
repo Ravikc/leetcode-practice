@@ -17,7 +17,7 @@ class Solution:
         curr = left
         while curr <= right:
             swapped = False
-            if nums[curr] == 0:
+            if nums[curr] == 0 and curr >= left:
                 self.swap(nums, left, curr)
                 swapped = True                
             
@@ -32,7 +32,8 @@ class Solution:
             while right >= 0 and nums[right] == 2:
                 right -= 1
             
+            # curr += 1
             if not swapped:
                 curr += 1
-            else:
-                curr = left
+            # else:
+            #     curr = left
