@@ -5,20 +5,25 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def helper(self, inorder, postorder, inorderIndices, left, right):
-        if left > right:
-            return None
-        
-        value = postorder.pop()
-        root = TreeNode(value)
-        inorderIndex = inorderIndices[value]
-        root.right = self.helper(inorder, postorder, inorderIndices, inorderIndex + 1, right)
-        root.left = self.helper(inorder, postorder, inorderIndices, left, inorderIndex - 1)
-        return root
+    
     
     def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+        index = len(inorder) - 1
+        def helper(postorder, inorderIndices, left, right):
+            if left > right:
+                return None
+
+            nonlocal index
+            value = postorder[index]
+            index -= 1
+            root = TreeNode(value)
+            inorderIndex = inorderIndices[value]
+            root.right = helper(postorder, inorderIndices, inorderIndex + 1, right)
+            root.left = helper(postorder, inorderIndices, left, inorderIndex - 1)
+            return root
+        
         dic = {}
         for i in range(len(inorder)):
             dic[inorder[i]] = i
         
-        return self.helper(inorder, postorder, dic, 0, len(inorder) - 1)
+        return helper(postorder, dic, 0, len(inorder) - 1)
