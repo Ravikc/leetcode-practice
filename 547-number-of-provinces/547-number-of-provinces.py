@@ -1,9 +1,12 @@
 class Solution:
     def findRoot(self, roots, x):
-        while roots[x] != x:
-            x = roots[x]
-            
-        return x
+        if roots[x] == x:
+            return x
+        
+        roots[x] = self.findRoot(roots, roots[x])
+        return roots[x]
+        
+       
     
     def union(self, roots, ranks, x, y):
         rootX = self.findRoot(roots, x)
