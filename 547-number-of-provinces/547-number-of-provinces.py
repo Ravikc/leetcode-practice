@@ -20,7 +20,6 @@ class Solution:
                 if isConnected[i][j] == 1:
                     self.union(roots, i, j)
                   
-        print(roots)
         provinces = set([self.findRoot(roots, i) for i in range(len(isConnected))])
         return len(provinces)
         
