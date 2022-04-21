@@ -18,10 +18,18 @@ class Solution:
     
     #Function to find if there is a celebrity in the party or not.
     def celebrity(self, M, n):
-        for i in range(n):
-            if self.checkAllColsAreZero(M, i) and self.checkAllRowsAreOne(M, i):
-                return i
+        left = 0
+        right = n - 1
+        
+        while left < right:
+            if M[left][right] == 0:
+                right -= 1
+            else:
+                left += 1
                 
+        if self.checkAllColsAreZero(M, left) and self.checkAllRowsAreOne(M, left):
+            return left
+        
         return -1
                 
             
