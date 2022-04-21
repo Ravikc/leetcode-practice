@@ -5,10 +5,14 @@ class Solution:
         if not node:
             return
         
-        self.helper(node.left, low, high, ans)
+        if low < node.data:
+            self.helper(node.left, low, high, ans)
+            
         if low <= node.data and node.data <= high:
             ans.append(node.data)
-        self.helper(node.right, low, high, ans)
+            
+        if high >= node.data:
+            self.helper(node.right, low, high, ans)
         
         
     def printNearNodes(self, root, low, high):
