@@ -1,29 +1,30 @@
 class Solution:
     def flatten(self, node: 'Optional[Node]') -> 'Optional[Node]':
-        orig = node
-        if not node:
-            return 
+        self.flattenHelper(node)
+        return node
         
+    def flattenHelper(self, node: 'Optional[Node]') -> 'Optional[Node]':
+        if not node:
+            return node
+        
+        if not node.next and not node.child:
+            return node        
         
         if node.child:
-            newLL = self.flatten(node.child)
+            newLL = self.flattenHelper(node.child)
             temp = node.next
-            node.next = newLL
-            newLL.prev = node
+            node.next = node.child
+            node.child.prev = node
             node.child = None
-            while newLL.next:
-                newLL = newLL.next
-                
+            
             newLL.next = temp
             if temp:
                 temp.prev = newLL
                 
-            node = newLL.next
-         
-        if node:
-            self.flatten(node.next)
-        return orig
-                
-                
+            node = newLL.prev
+             
             
+        if node:
+            return self.flattenHelper(node.next)
         
+        return node
