@@ -1,39 +1,28 @@
 class Solution:
-    def flatten(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        stack = []
-        newStack = []
-        curr = head
+    def flatten(self, node: 'Optional[Node]') -> 'Optional[Node]':
+        orig = node
+        if not node:
+            return 
         
-        while curr:
-            if curr.child:
-                stack.append(curr);
-                newStack.append(curr.child)
-                curr = curr.child
-                continue
-            
-            if curr.next:
-                curr = curr.next
-                continue
-            
-            if len(stack) > 0:
-                oldCurr = stack.pop()
-                oldCurr.child = None
-                newHead = newStack.pop()
-                oldNext = oldCurr.next #if oldCurr.next else stack[-1]
+        
+        if node.child:
+            newLL = self.flatten(node.child)
+            temp = node.next
+            node.next = newLL
+            newLL.prev = node
+            node.child = None
+            while newLL.next:
+                newLL = newLL.next
                 
-                oldCurr.next = newHead
-                newHead.prev = oldCurr
+            newLL.next = temp
+            if temp:
+                temp.prev = newLL
                 
-                if oldNext:
-                    curr.next = oldNext
-                    oldNext.prev = curr
-                    
-                curr = oldCurr
-                continue
-              
-            curr = curr.next
-            
-        return head
+            node = newLL.next
+         
+        if node:
+            self.flatten(node.next)
+        return orig
                 
                 
             
