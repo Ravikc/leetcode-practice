@@ -8,5 +8,4 @@ class Solution:
             minArr[i] = min(nums[i], min(minArr[i - 1] * nums[i], maxArr[i - 1] * nums[i]))
             maxArr[i] = max(nums[i], max(maxArr[i - 1] * nums[i], minArr[i - 1] * nums[i]))
           
-        print(minArr + maxArr)
-        return max((minArr + maxArr))
+        return max(maxArr)
