@@ -3,18 +3,16 @@ class Solution:
     
     def countVowelStrings(self, n: int) -> int:
         ans = 0
-        def helper(vowels, arr, targetCount, index):
+        def helper(vowels, currCount, targetCount, index):
             nonlocal ans
-            if len(arr) == targetCount:
+            if currCount == targetCount:
                 ans += 1
                 return
                 
-            for i in range(index, len(vowels)):
-                arr.append(vowels[i])
-                helper(vowels, arr, targetCount, i)
-                arr.pop()
+            for i in range(index, len(vowels)):                
+                helper(vowels, currCount + 1, targetCount, i)
                 
         
         arr = []
-        helper(['a', 'e', 'i', 'o', 'u'], arr, n, 0)
+        helper(['a', 'e', 'i', 'o', 'u'], 0, n, 0)
         return ans
