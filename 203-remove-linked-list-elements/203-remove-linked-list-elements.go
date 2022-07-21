@@ -6,14 +6,18 @@
  * }
  */
 func removeElements(head *ListNode, val int) *ListNode {
-    if head == nil {
-        return nil
+    trueHead := head
+    for head != nil && head.Next != nil {
+        if head.Next.Val == val {
+            head.Next = head.Next.Next
+        } else {
+            head = head.Next
+        }
     }
     
-    head.Next = removeElements(head.Next, val)
-    if head.Val == val {
-        return head.Next
+    if trueHead != nil && trueHead.Val == val {
+        return trueHead.Next
     }
     
-    return head
+    return trueHead
 }
