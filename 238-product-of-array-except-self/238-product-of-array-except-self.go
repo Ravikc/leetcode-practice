@@ -1,8 +1,9 @@
 func productExceptSelf(nums []int) []int {
-    ans := []int{1}
+    ans := make([]int, len(nums))
+    ans[0] = 1
     
     for i := 1; i < len(nums); i++ {
-        ans = append(ans, ans[len(ans) - 1] * nums[i - 1])
+        ans[i] = ans[i - 1] * nums[i - 1]
     }
     
     prod := 1
